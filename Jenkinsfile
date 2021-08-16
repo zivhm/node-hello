@@ -21,7 +21,7 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         withDockerRegistry(credentialsId: 'docker-hub-creds', url: 'https://index.docker.io/v1/') {
-           sh '''docker tag node-hello:$BUILD_ID lidorlg/node-hello:$BUILD_ID && docker push lidorlg/node-hello:$BUILD_ID'''
+           sh '''docker tag node-hello:$BUILD_ID lidorlg/node-hello:$BUILD_ID && docker tag node-hello:$BUILD_ID lidorlg/node-hello:latest && docker push lidorlg/node-hello:$BUILD_ID && docker push lidorlg/node-hello:latest'''
          }
       }
     }
