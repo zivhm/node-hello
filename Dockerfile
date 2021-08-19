@@ -1,8 +1,9 @@
 FROM node:10
+ARG DEVOPS-LEVEL
 MAINTAINER Lidor G
 WORKDIR /usr/app
 COPY . .
-RUN npm install
+RUN npm install & echo "$DEVOPS-LEVEL"
 ENV ENVIRONMENT PRODUCTION 
-ARG DEVOPS-LEVEL HARD
+ 
 CMD ["node", "index.js"]
