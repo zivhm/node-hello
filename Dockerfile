@@ -6,4 +6,4 @@ COPY . .
 RUN npm install & echo "$DEVOPS-LEVEL"
 ENV ENVIRONMENT PRODUCTION 
  
-CMD ["node", "index.js"]
+ENTRYPOINT [ "node", "index.js" ] 
