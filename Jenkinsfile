@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('checkout code') {
       steps {
-        git(url: 'https://github.com/lidorg-dev/node-hello.git', branch: 'master', credentialsId: 'github', poll: true, changelog: true)
+        git(url: 'https://github.com/lidorg-dev/node-hello.git', branch: 'master', credentialsId: 'github')
       }
     }
 
