@@ -29,7 +29,8 @@ pipeline {
 
     stage('push to dockerhub') {
       steps {
-        echo 'push to docker hub'
+        sh 'docker login -u lidorlg -p '
+        sh 'docker push blue-ocean:${env.BUILD_NUMBER}'
       }
     }
 
