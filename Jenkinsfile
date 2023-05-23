@@ -29,8 +29,10 @@ pipeline {
 
     stage('push to dockerhub') {
       steps {
-        sh 'docker login -u lidorlg -p '
-        sh 'docker push blue-ocean:${env.BUILD_NUMBER}'
+        withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'user', passwordVariable: 'pass')]) {
+        sh 'docker login -u $user -p $pass'
+        sh "docker push blue-ocean:${env.BUILD_NUMBER}"
+        }
       }
     }
 
