@@ -21,6 +21,9 @@ pipeline {
     stage('test the container') {
       steps {
         sh "docker run -itd --name blue-ocean -p 3000:3000 lidorlg/blue-ocean:${env.BUILD_NUMBER}"
+        sh 'sleep 5'
+        sh 'curl localhost:3000'
+        sh 'docker stop blue-ocean && docker rm blue-ocean'
       }
     }
 
