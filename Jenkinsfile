@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('checkout code') {
       steps {
-        echo 'hello from checkout code'
+        git(url: 'https://github.com/lidorg-dev/node-hello.git', branch: 'master')
       }
     }
 
