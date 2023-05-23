@@ -31,7 +31,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'user', passwordVariable: 'pass')]) {
           sh "docker login -u $user -p $pass"
-          sh "docker push blue-ocean:${env.BUILD_NUMBER}"
+          sh "docker push lidorlg/blue-ocean:${env.BUILD_NUMBER}"
         }
 
       }
