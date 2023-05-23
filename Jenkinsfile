@@ -20,7 +20,7 @@ pipeline {
 
     stage('test the container') {
       steps {
-        echo 'test the container'
+        sh '"docker run -itd --name blue-ocean -p 3000:3000 lidorlg/blue-ocean:${env.BUILD_NUMBER}"'
       }
     }
 
