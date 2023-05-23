@@ -14,7 +14,7 @@ pipeline {
 
     stage('build dockerfile') {
       steps {
-        echo 'hello from build docker file'
+        sh 'docker build -t lidorlg/blue-ocean:${env.BUILD_NUMBER} .'
       }
     }
 
