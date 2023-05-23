@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('checkout code') {
       steps {
-        git(url: 'https://github.com/lidorg-dev/node-hello.git', branch: 'master')
+        git(url: 'https://github.com/lidorg-dev/node-hello.git', branch: 'master', credentialsId: 'github', poll: true, changelog: true)
       }
     }
 
@@ -29,10 +29,11 @@ pipeline {
 
     stage('push to dockerhub') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'user', passwordVariable: 'pass')]) {
-        sh 'docker login -u $user -p $pass'
-        sh "docker push blue-ocean:${env.BUILD_NUMBER}"
+        withCredentials(bindings: [usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'user', passwordVariable: 'pass')]) {
+          sh 'docker login -u $user -p $pass'
+          sh "docker push blue-ocean:${env.BUILD_NUMBER}"
         }
+
       }
     }
 
