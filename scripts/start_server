@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -itd --name blue-ocean -p 80:3000 lidorlg/blue-ocean:latest
