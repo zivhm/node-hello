@@ -12,9 +12,19 @@ pipeline {
       }
     }
 
-    stage('build') {
+    stage('install node v10') {
       steps {
-        sh 'echo "Build"'
+        sh '''wget https://nodejs.org/dist/v10.24.1/node-v10.24.1-linux-x64.tar.xz
+tar -xzvf node-v10.24.1-linux-x64.tar.xz node/
+ls node/
+
+'''
+      }
+    }
+
+    stage('build node package') {
+      steps {
+        sh './node/bin/npm install'
       }
     }
 
