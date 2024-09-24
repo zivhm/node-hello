@@ -22,6 +22,7 @@ node -v
 npm -v
 npm install
 node index.js &
+sleep 60
 curl localhost:3000'''
       }
     }
