@@ -12,7 +12,7 @@ pipeline {
       }
     }
 
-    stage('install node v10') {
+    stage('install node and build app &test') {
       steps {
         sh '''curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -20,13 +20,15 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install 10
 node -v
 npm -v
-'''
+npm install
+node index.js &
+curl localhost:3000'''
       }
     }
 
-    stage('build node package') {
+    stage('archive artifact') {
       steps {
-        sh 'npm install'
+        archiveArtifacts '*'
       }
     }
 
