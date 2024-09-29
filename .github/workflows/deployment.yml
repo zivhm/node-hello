@@ -1,0 +1,33 @@
+name: deployment
+on: push:
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Get code
+      uses: actions/checkout@v4
+
+    - name: Build Code
+      run: npm ci
+  
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Test Code
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Test Code
+        run: npm ci
+      - name: Deploy Code
+        run: echo "Deploying to production..."
